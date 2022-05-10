@@ -14,7 +14,7 @@ jobs:
   build-machine:
       machine:
         - image: ubuntu-2004:202201-02
-        - resource_class: medium
+      resource_class: medium
       steps:
         - checkout
         - run: echo "machine image"
@@ -38,3 +38,5 @@ workflows:
     jobs:
       - build-docker
       - build-machine
+      - build-macos
+      - build-win
