@@ -13,7 +13,7 @@ jobs:
   
   build-machine:
       machine:
-        - image: ubuntu-2004:202201-02
+        image: ubuntu-2004:202201-02
       resource_class: medium
       steps:
         - checkout
@@ -37,6 +37,12 @@ workflows:
   build-docker-workflow:
     jobs:
       - build-docker
+  build-machine-workflow:   
+    jobs: 
       - build-machine
+  build-macos-workflow:
+    jobs:
       - build-macos
+  build-win-workflow:
+    jobs:
       - build-win
