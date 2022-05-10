@@ -1,13 +1,40 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
   build-docker:
     docker:
       - image: cimg/node:17.2.0
     steps:
+      - checkout
       - run: echo "docker image"
+  
+  build-machine:
+      machine:
+        - image: ubuntu-2004:202201-02
+        - resource_class: medium
+      steps:
+        - checkout
+        - run: echo "machine image"
+
+  build-macos:
+      macos:
+        xcode: 12.5.1
+      steps:
+        - checkout
+        - run: echo "MAC!"
+  
+  build-win:
+    executor: win/default
+    steps:
+      - checkout
+      - run: Write-Host 'Hello, CircleCI'
+  
 
 workflows:
   build-docker-workflow:
     jobs:
       - build-docker
+      - build-machine
